@@ -28,9 +28,9 @@ export default function FacultySection() {
             <span className="text-white">Cordinator</span>
           </h2>
 
-          <div className="flex justify-center items-center gap-16">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
             {facultyMembers.map((member, index) => (
-              <div key={index} className="flex items-center gap-6">
+              <div key={index} className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
                 <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-300 flex-shrink-0">
                   <Image
                     src={member.image}
