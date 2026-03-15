@@ -155,6 +155,12 @@ export default function AboutPage() {
           </a>
         </div>
       </section>
+
+      <section className="gallery-cta-section">
+        <a href="/gallery" className="gallery-button">
+          Gallery
+        </a>
+      </section>
     </div>
   )
 }
