@@ -3,6 +3,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import Header from '@/components/Header'
 import './event-details.css'
 
 const eventData: { [key: string]: any } = {
@@ -169,7 +170,9 @@ export default function EventDetails() {
   }
 
   return (
-    <div className="event-details-page">
+    <>
+      <Header />
+      <div className="event-details-page">
       <div className="back-link">
         <Link href="/events" className="back-button">
           ← Back to Events
@@ -316,5 +319,6 @@ export default function EventDetails() {
       </section>
 
     </div>
+    </>
   )
 }

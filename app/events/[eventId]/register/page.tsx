@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
+import Header from '@/components/Header'
 import './registration.css'
 
 const eventNames: { [key: string]: string } = {
@@ -44,7 +45,9 @@ export default function Registration() {
   }
 
   return (
-    <div className="registration-page">
+    <>
+      <Header />
+      <div className="registration-page">
       <div className="back-link">
         <Link href={`/events/${eventId}`} className="back-button">
           ← Back to Event Details
@@ -186,5 +189,6 @@ export default function Registration() {
         </form>
       </div>
     </div>
+    </>
   )
 }

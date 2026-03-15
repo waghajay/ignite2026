@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Header from '@/components/Header'
 import './events.css'
 
 const events = [
@@ -73,7 +74,9 @@ const events = [
 
 export default function Events() {
   return (
-    <div className="event-page">
+    <>
+      <Header />
+      <div className="event-page">
       <section className="event-hero-section">
         <h1 className="event-page-title">
           Our <span className="highlight">Events</span>
@@ -134,5 +137,6 @@ export default function Events() {
         </div>
       </section>
     </div>
+    </>
   )
 }

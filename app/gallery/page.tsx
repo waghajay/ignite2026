@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect } from 'react'
+import Header from '@/components/Header'
 import './gallery.css'
 
 export default function Gallery() {
@@ -35,7 +36,9 @@ export default function Gallery() {
     : galleryImages.filter(img => img.category === activeFilter)
 
   return (
-    <div className="gallery-page">
+    <>
+      <Header />
+      <div className="gallery-page">
       <section className="gallery-hero">
         <h1 className="gallery-title">
           <span className="highlight">The Glimpse</span> of IGNITE
@@ -103,5 +106,6 @@ export default function Gallery() {
         ))}
       </section>
     </div>
+    </>
   )
 }
