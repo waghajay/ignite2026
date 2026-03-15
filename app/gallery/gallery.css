@@ -1,5 +1,5 @@
 .gallery-page {
-  background-color: #161b22;
+  background-color: #1a1f25;
   color: #fff;
   min-height: 100vh;
   padding-bottom: 4rem;
@@ -110,7 +110,7 @@
 
 .filter-btn.active {
   background-color: #d4a574;
-  color: #161b22;
+  color: #1a1f25;
 }
 
 .gallery-grid {
