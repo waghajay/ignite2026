@@ -42,7 +42,8 @@ export default function Header() {
           {[
             { name: 'Home', href: '/' },
             { name: 'About us', href: '/about' },
-            { name: 'Event', href: '/#event' },
+            { name: 'Events', href: '/events' },
+            { name: 'Gallery', href: '/gallery' },
             { name: 'Team', href: '/team' },
             { name: 'Contact', href: '/contact' }
           ].map((item) => (

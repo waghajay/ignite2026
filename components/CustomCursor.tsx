@@ -4,22 +4,17 @@ import { useEffect, useState } from 'react'
 
 export default function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [dotPosition, setDotPosition] = useState({ x: 0, y: 0 })
   const [isHovering, setIsHovering] = useState(false)
 
   useEffect(() => {
     const updateCursor = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY })
-      setDotPosition({ x: e.clientX, y: e.clientY })
     }
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      if (target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a') || target.closest('button')) {
-        setIsHovering(true)
-      } else {
-        setIsHovering(false)
-      }
+      const isInteractive = target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a') || target.closest('button')
+      setIsHovering(isInteractive)
     }
 
     window.addEventListener('mousemove', updateCursor)
@@ -31,16 +26,13 @@ export default function CustomCursor() {
     }
   }, [])
 
+  const cursorStyle = { left: `${position.x}px`, top: `${position.y}px` }
+  const hoverClass = isHovering ? 'hover' : ''
+
   return (
     <>
-      <div
-        className={`custom-cursor ${isHovering ? 'hover' : ''}`}
-        style={{ left: `${position.x}px`, top: `${position.y}px` }}
-      />
-      <div
-        className={`custom-cursor-dot ${isHovering ? 'hover' : ''}`}
-        style={{ left: `${dotPosition.x}px`, top: `${dotPosition.y}px` }}
-      />
+      <div className={`custom-cursor ${hoverClass}`} style={cursorStyle} />
+      <div className={`custom-cursor-dot ${hoverClass}`} style={cursorStyle} />
     </>
   )
 }
