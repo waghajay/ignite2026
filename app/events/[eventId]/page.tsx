@@ -315,11 +315,6 @@ export default function EventDetails() {
         </div>
       </section>
 
-      <section className="gallery-cta-section">
-        <Link href="/gallery" className="gallery-button">
-          Gallery
-        </Link>
-      </section>
     </div>
   )
 }

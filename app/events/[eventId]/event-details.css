@@ -367,35 +367,6 @@
   box-shadow: 0 8px 25px rgba(243, 189, 81, 0.4);
 }
 
-.gallery-cta-section {
-  max-width: 1200px;
-  margin: 2rem auto 0;
-  padding: 0 max(1rem, calc((100vw - 1200px) / 2));
-  text-align: center;
-}
-
-.gallery-button {
-  background: linear-gradient(90deg, #F5C870 0%, #F3BD51 40%, #B07A15 100%);
-  color: #0a0e13;
-  font-family: 'Oswald', sans-serif;
-  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
-  font-weight: 600;
-  padding: 1rem 3rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.gallery-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(243, 189, 81, 0.4);
-}
-
 .error-message {
   text-align: center;
   padding: 4rem 2rem;
@@ -441,36 +412,7 @@
 
   .about-event-section,
   .rules-coordinators-section,
-  .cta-section,
-  .gallery-cta-section {
+  .cta-section {
     padding: 2rem 1rem;
-  }
-}
-
-@media (min-width: 1400px) {
-  .event-header-section,
-  .about-event-section,
-  .rules-coordinators-section,
-  .cta-section,
-  .gallery-cta-section {
-    max-width: 1400px;
-  }
-
-  .back-link {
-    padding-left: max(2rem, calc((100vw - 1400px) / 2));
-    padding-right: max(2rem, calc((100vw - 1400px) / 2));
-  }
-
-  .event-header-section {
-    padding-left: max(2rem, calc((100vw - 1400px) / 2));
-    padding-right: max(2rem, calc((100vw - 1400px) / 2));
-  }
-
-  .about-event-section,
-  .rules-coordinators-section,
-  .cta-section,
-  .gallery-cta-section {
-    padding-left: max(2rem, calc((100vw - 1400px) / 2));
-    padding-right: max(2rem, calc((100vw - 1400px) / 2));
   }
 }
