@@ -75,6 +75,8 @@
   margin: 0;
   padding: 0;
   flex-wrap: wrap;
+  visibility: visible;
+  opacity: 1;
 }
 
 .header-menu li {
@@ -113,6 +115,27 @@
   display: none;
 }
 
+/* Ensure menu is always visible on desktop */
+@media (min-width: 769px) {
+  .header-menu {
+    display: flex !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    flex-direction: row !important;
+    gap: 2rem !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    right: auto !important;
+  }
+  
+  .hamburger {
+    display: none !important;
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .header-nav {
@@ -130,7 +153,7 @@
     right: -100%;
     width: 280px;
     height: 100vh;
-    background: linear-gradient(180deg, #0a0e13 0%, #151a1f 100%);
+    background: linear-gradient(180deg, #1a1f25 0%, #151a1f 100%);
     flex-direction: column;
     gap: 0;
     padding: 100px 2rem 2rem;
