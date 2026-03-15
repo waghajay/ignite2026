@@ -1,3 +1,4 @@
+// IGNITE Website - Next.js Implementation
 import HeroSection from '@/components/HeroSection'
 import EventSection from '@/components/EventSection'
 import AboutSection from '@/components/AboutSection'
