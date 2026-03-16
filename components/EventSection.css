@@ -286,3 +286,97 @@
     padding: 0.2rem 0.6rem;
   }
 }
+
+
+/* Make sure the register button link looks like a button */
+.register-btn {
+  width: 100%;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #F3BD51 0%, #8D6E2F 100%);
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.register-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(243, 189, 81, 0.4);
+}
+
+
+/* View All Container */
+.view-all-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+/* View All Button */
+.view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 14px 36px;
+  background: transparent;
+  color: #F3BD51;
+  border: 2px solid #F3BD51;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.view-all-btn:hover {
+  background: rgba(243, 189, 81, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(243, 189, 81, 0.3);
+  border-color: #F4C058;
+  color: #F4C058;
+}
+
+.view-all-btn .arrow-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.view-all-btn:hover .arrow-icon {
+  transform: translateX(6px);
+}
+
+/* Update responsive styles */
+@media (max-width: 768px) {
+  .view-all-btn {
+    font-size: 16px;
+    padding: 12px 28px;
+  }
+  
+  .view-all-container {
+    margin-top: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .view-all-btn {
+    font-size: 14px;
+    padding: 10px 24px;
+    width: 100%;
+    justify-content: center;
+  }
+}

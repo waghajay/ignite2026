@@ -82,6 +82,9 @@ export default function EventSection() {
     )
   }
 
+  // Get only the first 3 events
+  const displayedEvents = events.slice(0, 3)
+
   return (
     <section className="event-section">
       <div className="event-container">
@@ -101,8 +104,8 @@ export default function EventSection() {
 
         {/* Event Cards */}
         <div className="event-cards-container">
-          {events.length > 0 ? (
-            events.map((event) => (
+          {displayedEvents.length > 0 ? (
+            displayedEvents.map((event) => (
               <div key={event._id} className="event-card">
                 <div className="event-image-wrapper">
                   {!imageErrors[event._id] ? (
@@ -166,7 +169,10 @@ export default function EventSection() {
                     )}
                   </div>
 
-                  <button className="register-btn">Register Now</button>
+                  <Link href={`/register?event=${event._id}`} className="register-btn">
+                    Register Now
+                  </Link>
+                  
                   <Link href={`/event-details/${event._id}`} className="more-details-btn">
                     More Details
                     <svg className="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,7 +186,21 @@ export default function EventSection() {
             <p className="no-events">No events available at the moment.</p>
           )}
         </div>
+
+        {/* View All Events Button */}
+        {events.length > 3 && (
+          <div className="view-all-container">
+            <Link href="/events" className="view-all-btn">
+              View All Events
+              <svg className="arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   )
 }
+
+

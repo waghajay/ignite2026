@@ -215,3 +215,104 @@
     padding-right: max(2rem, calc((100vw - 1400px) / 2));
   }
 }
+
+
+
+/* Add these styles to your existing events.css */
+
+.loading-state,
+.error-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #7d8590;
+  font-size: 1.1rem;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Oswald', sans-serif;
+}
+
+.error-state h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #F3BD51;
+}
+
+.retry-btn {
+  background: transparent;
+  color: #F3BD51;
+  border: 1.5px solid #F3BD51;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(243, 189, 81, 0.3);
+  border-color: #F4C058;
+  color: #F4C058;
+}
+
+.no-events {
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  color: #7d8590;
+  font-size: 1.2rem;
+  padding: 4rem;
+  grid-column: 1 / -1;
+}
+
+.event-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.event-tag {
+  background: rgba(243, 189, 81, 0.1);
+  color: #F3BD51;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-family: 'Oswald', sans-serif;
+  border: 1px solid rgba(243, 189, 81, 0.2);
+}
+
+/* Update the meta items to handle the new layout */
+.event-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Oswald', sans-serif;
+  color: #e5e7eb;
+  font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+  white-space: nowrap;
+}
+
+.event-card-meta {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .event-card-meta {
+    gap: 1rem;
+  }
+  
+  .event-meta-item {
+    white-space: normal;
+    font-size: 0.85rem;
+  }
+}
