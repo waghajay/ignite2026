@@ -213,3 +213,76 @@
     height: 200px;
   }
 }
+
+
+
+/* Add these styles to your existing CSS */
+
+.loading-state,
+.error-state,
+.no-events {
+  text-align: center;
+  padding: 3rem;
+  color: #7A8B9E;
+  font-size: 1.1rem;
+  font-family: 'Oswald', sans-serif;
+}
+
+.retry-btn {
+  background: transparent;
+  color: #D4A574;
+  border: 1.5px solid #D4A574;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
+  border-color: #F3BD51;
+  color: #F3BD51;
+}
+
+.event-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.event-tag {
+  background: rgba(212, 165, 116, 0.1);
+  color: #D4A574;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-family: 'Oswald', sans-serif;
+  border: 1px solid rgba(212, 165, 116, 0.3);
+}
+
+/* Update event details spacing */
+.event-details {
+  margin-bottom: 1.5rem;
+}
+
+.event-detail-item {
+  color: #7A8B9E;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .event-tags {
+    margin-bottom: 0.75rem;
+  }
+  
+  .event-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
