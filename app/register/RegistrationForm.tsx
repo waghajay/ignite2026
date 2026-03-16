@@ -198,15 +198,14 @@ export default function RegistrationForm() {
       
       // Load Cashfree SDK and initialize payment
       const Cashfree = await loadCashfreeScript()
-      
+
       const cashfree = Cashfree({
-        mode: "sandbox" // Change to "production" for live
+        mode: "production"
       })
 
-      // Redirect to Cashfree checkout
       cashfree.checkout({
         paymentSessionId: payment_session_id,
-        redirectTarget: "_self" // Use "_blank" to open in new tab
+        redirectTarget: "_self"
       })
 
     } catch (err) {
