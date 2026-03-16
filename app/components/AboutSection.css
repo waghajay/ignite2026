@@ -1,0 +1,162 @@
+/* Import Oswald Font */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+
+/* About Section */
+.about-section {
+  background-color: #1a1f25;
+  padding: 80px 80px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Title */
+.about-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  text-align: center;
+  color: white;
+  margin-bottom: 32px;
+  letter-spacing: 2px;
+}
+
+.title-highlight {
+  color: #D4A574;
+}
+
+/* Description */
+.about-description {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+  color: #A0A0A0;
+  max-width: 900px;
+  margin: 0 auto 60px;
+}
+
+/* Cards Container */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 60px;
+}
+
+/* Info Card */
+.info-card {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 165, 116, 0.2);
+  border-radius: 12px;
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.info-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(212, 165, 116, 0.5);
+  box-shadow: 0 10px 30px rgba(212, 165, 116, 0.2);
+}
+
+/* Card Icon */
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.card-icon img {
+  filter: brightness(0) saturate(100%) invert(73%) sepia(25%) saturate(645%) hue-rotate(358deg) brightness(92%) contrast(87%);
+}
+
+/* Card Title */
+.card-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: white;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+/* Card Description */
+.card-description {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #A0A0A0;
+}
+
+/* Button Wrapper */
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* Read More Button */
+.read-more-btn {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 16px 48px;
+  background: linear-gradient(135deg, #F3BD51 0%, #8D6E2F 100%);
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.read-more-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(243, 189, 81, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 60px 40px;
+  }
+
+  .about-title {
+    font-size: 36px;
+  }
+
+  .about-description {
+    font-size: 16px;
+  }
+
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .card-title {
+    font-size: 24px;
+  }
+
+  .card-description {
+    font-size: 14px;
+  }
+}

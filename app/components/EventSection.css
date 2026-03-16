@@ -1,0 +1,288 @@
+/* Event Section */
+.event-section {
+  background-color: #1a1f25;
+  padding: 80px 80px;
+  min-height: 100vh;
+}
+
+.event-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Title */
+.event-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 48px;
+  color: white;
+  margin-bottom: 32px;
+  line-height: 1.3;
+  letter-spacing: 1px;
+}
+
+.title-highlight {
+  color: #D4A574;
+}
+
+/* Description */
+.event-description {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #7A8B9E;
+  margin-bottom: 60px;
+  max-width: 1200px;
+}
+
+/* Event Cards Container */
+.event-cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* Event Card */
+.event-card {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(212, 165, 116, 0.3);
+}
+
+/* Event Image */
+.event-image-wrapper {
+  width: 100%;
+  height: 250px;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.event-card:hover .event-image {
+  transform: scale(1.1);
+}
+
+/* Event Content */
+.event-content {
+  padding: 24px;
+}
+
+/* Event Card Title */
+.event-card-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* Event Card Description */
+.event-card-description {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #7A8B9E;
+  margin-bottom: 20px;
+}
+
+/* Event Details */
+.event-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.event-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #7A8B9E;
+}
+
+.detail-icon {
+  width: 16px;
+  height: 16px;
+  color: #D4A574;
+}
+
+/* Register Button */
+.register-btn {
+  width: 100%;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #F3BD51 0%, #8D6E2F 100%);
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.register-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(243, 189, 81, 0.4);
+}
+
+/* More Details Button */
+.more-details-btn {
+  width: 100%;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 10px 24px;
+  background: transparent;
+  color: #D4A574;
+  border: 1px solid #D4A574;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.more-details-btn:hover {
+  background: rgba(212, 165, 116, 0.1);
+  transform: translateX(4px);
+}
+
+.arrow-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.more-details-btn:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .event-cards-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .event-section {
+    padding: 60px 40px;
+  }
+
+  .event-title {
+    font-size: 32px;
+  }
+
+  .event-description {
+    font-size: 14px;
+  }
+
+  .event-cards-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .event-image-wrapper {
+    height: 200px;
+  }
+}
+
+
+
+/* Add these styles to your existing CSS */
+
+.loading-state,
+.error-state,
+.no-events {
+  text-align: center;
+  padding: 3rem;
+  color: #7A8B9E;
+  font-size: 1.1rem;
+  font-family: 'Oswald', sans-serif;
+}
+
+.retry-btn {
+  background: transparent;
+  color: #D4A574;
+  border: 1.5px solid #D4A574;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.retry-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
+  border-color: #F3BD51;
+  color: #F3BD51;
+}
+
+.event-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.event-tag {
+  background: rgba(212, 165, 116, 0.1);
+  color: #D4A574;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-family: 'Oswald', sans-serif;
+  border: 1px solid rgba(212, 165, 116, 0.3);
+}
+
+/* Update event details spacing */
+.event-details {
+  margin-bottom: 1.5rem;
+}
+
+.event-detail-item {
+  color: #7A8B9E;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .event-tags {
+    margin-bottom: 0.75rem;
+  }
+  
+  .event-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+}

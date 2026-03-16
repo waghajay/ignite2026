@@ -1,0 +1,231 @@
+.header-nav {
+  position: relative;
+  z-index: 20;
+  background: transparent;
+  padding: 0.25rem 5rem;
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+.header-container {
+  max-width: 90rem;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.3));
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+}
+
+.header-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 20px rgba(234, 179, 8, 0.6));
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1001;
+  transition: all 0.3s ease;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background-color: #F3BD51;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -8px);
+}
+
+.header-menu {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  visibility: visible;
+  opacity: 1;
+}
+
+.header-menu li {
+  position: relative;
+}
+
+.header-link {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: 'Oswald', sans-serif;
+  transition: color 0.3s ease;
+}
+
+.header-link:hover {
+  color: #D4A574;
+}
+
+.header-underline {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #D4A574;
+  transition: width 0.3s ease;
+}
+
+.header-link:hover .header-underline {
+  width: 100%;
+}
+
+.menu-overlay {
+  display: none;
+}
+
+/* Ensure menu is always visible on desktop */
+@media (min-width: 769px) {
+  .header-menu {
+    display: flex !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+    flex-direction: row !important;
+    gap: 2rem !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    right: auto !important;
+  }
+  
+  .hamburger {
+    display: none !important;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-nav {
+    padding: 1rem 2rem;
+    height: 80px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .header-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(180deg, #1a1f25 0%, #b83907 100%);
+    flex-direction: column;
+    gap: 0;
+    padding: 100px 2rem 2rem;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+    transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 1000;
+    border-left: 2px solid #F3BD51;
+  }
+
+  .header-menu.active {
+    right: 0;
+  }
+
+  .header-menu li {
+    width: 100%;
+    padding: 0;
+    border-bottom: 1px solid rgba(243, 189, 81, 0.1);
+  }
+
+  .header-link {
+    display: block;
+    padding: 1.2rem 0;
+    font-size: 1.1rem;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+
+  .header-link:hover {
+    color: #F3BD51;
+    padding-left: 10px;
+  }
+
+  .header-underline {
+    display: none;
+  }
+
+  .menu-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    backdrop-filter: blur(4px);
+  }
+
+  .header-logo {
+    width: auto;
+    height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-nav {
+    padding: 0.75rem 1.5rem;
+    height: 70px;
+  }
+
+  .header-logo {
+    width: auto;
+    height: 50px;
+  }
+
+  .header-menu {
+    width: 260px;
+    padding: 80px 1.5rem 2rem;
+  }
+
+  .header-link {
+    font-size: 1rem;
+    padding: 1rem 0;
+  }
+}

@@ -9,18 +9,18 @@ export default function Gallery() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   const heroImages = [
-    '/images/IMG_0773.png',
-    '/images/IMG_0773.png',
-    '/images/IMG_0773.png',
-    '/images/IMG_0773.png',
-    '/images/IMG_0773.png',
+    '/images/team4.jpeg',
+    '/images/team5.jpeg',
+    '/images/snapshot2.jpeg',
+    '/images/snapshot1.jpeg',
+    '/images/IMG_4344.jpg',
   ]
 
   const galleryImages = [
-    { id: 1, src: '/images/IMG_0773.png', category: 'team', alt: 'Team Photo 1' },
-    { id: 2, src: '/images/IMG_0773.png', category: 'team', alt: 'Team Photo 2' },
-    { id: 3, src: '/images/IMG_0773.png', category: 'events', alt: 'Event Photo 1' },
-    { id: 4, src: '/images/IMG_0773.png', category: 'events', alt: 'Event Photo 2' },
+    { id: 1, src: '/images/event1.jpeg', category: 'events', alt: 'Event Photo 1' },
+    { id: 2, src: '/images/event2.jpeg', category: 'events', alt: 'Event Photo 2' },
+    { id: 3, src: '/images/team1.png', category: 'team', alt: 'Team Photo 1' },
+    { id: 4, src: '/images/team3.png', category: 'team', alt: 'Team Photo 2' },
   ]
 
   useEffect(() => {

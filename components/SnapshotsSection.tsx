@@ -13,7 +13,7 @@ export default function SnapshotsSection() {
   ];
 
   return (
-    <section className="py-16 px-4 bg-gray-200 overflow-hidden">
+    <section className="py-16 px-4 bg-gray-1000 overflow-hidden">
       <style jsx>{`
         @keyframes scroll {
           0% {

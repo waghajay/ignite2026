@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Lalezar&display=swap');
+
+/* Hero Container */
+.hero-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Gradient Background */
+.hero-background-image {
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.background-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.background-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+  z-index: 1;
+}
+
+/* Hero Content */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+/* Subtitle - Team IGNITE Presents */
+.hero-subtitle {
+  font-family: 'Lalezar', cursive;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: #ffffff;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+               0 0 40px rgba(255, 255, 255, 0.4);
+}
+
+.hero-subtitle.animate {
+  animation: fadeInDown 1s ease-out 0.3s forwards;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Main Title - IGNITION 2026 */
+.hero-title {
+  font-family: 'Krona One', sans-serif;
+  font-size: clamp(3rem, 12vw, 9rem);
+  font-weight: 400;
+  color: #FFD000;
+  margin-bottom: 3rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0;
+  text-shadow: 0 0 15px rgba(255, 208, 0, 0.5),
+               0 0 30px rgba(255, 208, 0, 0.3),
+               0 5px 20px rgba(0, 0, 0, 0.8);
+  filter: drop-shadow(0 0 10px rgba(255, 208, 0, 0.4));
+  line-height: 1.2;
+}
+
+.hero-title.animate {
+  animation: slideUpFade 1s ease-out 0.8s forwards;
+}
+
+/* Sponsors Section */
+.sponsors-section {
+  margin-bottom: 3rem;
+  opacity: 0;
+}
+
+.sponsors-section.animate {
+  animation: slideUpFade 1s ease-out 1.8s forwards;
+}
+
+.sponsors-heading {
+  font-family: 'Lalezar', cursive;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.sponsors-logos {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.sponsor-logo {
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.sponsor-logo:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.sponsor-logo img {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Simple Slide Up Animation */
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Buttons */
+.button-container {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  opacity: 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.button-container.animate {
+  animation: slideUpFade 1s ease-out 2.8s forwards;
+}
+
+.btn {
+  position: relative;
+  padding: 1.3rem 3.5rem;
+  font-weight: 700;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  font-family: 'Lalezar', cursive;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.btn-text {
+  position: relative;
+  z-index: 10;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #FFD000 0%, #FF8C00 100%);
+  color: #000;
+}
+
+.btn-primary:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 50px rgba(255, 208, 0, 0.7),
+              0 0 80px rgba(255, 140, 0, 0.5);
+}
+
+.btn-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+  transition: left 0.7s ease;
+}
+
+.btn-primary:hover .btn-shine {
+  left: 100%;
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 3px solid #FFD000;
+  color: #FFD000;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-8px) scale(1.05);
+  color: #000;
+  border-color: #FFD000;
+  box-shadow: 0 20px 50px rgba(255, 208, 0, 0.5);
+}
+
+.btn-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #FFD000 0%, #FF8C00 100%);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 1;
+}
+
+.btn-secondary:hover .btn-fill {
+  transform: translateY(0);
+}
+
+/* Scroll Arrow */
+.scroll-arrow {
+  animation: bounce 2s infinite 3.8s;
+}
+
+.arrow-icon {
+  width: 3rem;
+  height: 3rem;
+  color: #FFD000;
+  filter: drop-shadow(0 0 15px rgba(255, 208, 0, 0.9));
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Social Icons */
+.social-icons {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.social-link {
+  text-decoration: none;
+}
+
+.social-box {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 2px solid #FFD000;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.social-box:hover {
+  background: linear-gradient(135deg, #FFD000 0%, #FF8C00 100%);
+  transform: scale(1.2) rotate(12deg);
+  box-shadow: 0 10px 40px rgba(255, 208, 0, 0.7);
+}
+
+.social-svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #FFD000;
+  transition: color 0.3s ease;
+}
+
+.social-box:hover .social-svg {
+  color: #000;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-subtitle {
+    font-size: clamp(1.2rem, 3.5vw, 2rem);
+    letter-spacing: 0.2em;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 5rem);
+    letter-spacing: 0.15em;
+    margin-bottom: 3rem;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 350px;
+    margin-bottom: 3rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 1.1rem 2.5rem;
+  }
+
+  .social-icons {
+    right: 1rem;
+    gap: 1rem;
+  }
+
+  .social-box {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .social-svg {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .arrow-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 0 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.5rem, 8vw, 3.5rem);
+    letter-spacing: 0.1em;
+    margin-bottom: 2.5rem;
+  }
+
+  .button-container {
+    margin-bottom: 2.5rem;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 0.9rem;
+  }
+
+  .social-icons {
+    right: 0.5rem;
+  }
+
+  .social-box {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .social-svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+}

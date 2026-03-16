@@ -7,47 +7,50 @@ export default function Team() {
     {
       name: 'Harsh Bhamare',
       role: 'President',
-      image: '/images/person.png',
-      linkedin: 'https://linkedin.com/',
-      instagram: 'https://instagram.com/',
+      image: '/images/president.png',
+      linkedin: 'https://www.linkedin.com/in/harsh-bhamare/',
+      instagram: 'https://www.instagram.com/harsh.bhamare22/',
     },
     {
-      name: 'Harsh Bhamare',
-      role: 'President',
-      image: '/images/person.png',
-      linkedin: 'https://linkedin.com/',
-      instagram: 'https://instagram.com/',
+      name: 'Rasika Mahulkar',
+      role: 'Vice-President',
+      image: '/images/rasika.png',
+      linkedin: 'https://www.linkedin.com/in/rasika-mahulkar-718a57286/',
+      instagram: 'https://www.instagram.com/rassi08/',
     },
-    {
-      name: 'Harsh Bhamare',
-      role: 'President',
-      image: '/images/person.png',
-      linkedin: 'https://linkedin.com/',
-      instagram: 'https://instagram.com/',
-    },
-    {
-      name: 'Harsh Bhamare',
-      role: 'President',
-      image: '/images/person.png',
-      linkedin: 'https://linkedin.com/',
-      instagram: 'https://instagram.com/',
-    },
+    // {
+    //   name: 'Harsh Bhamare',
+    //   role: 'President',
+    //   image: '/images/person.png',
+    //   linkedin: 'https://linkedin.com/',
+    //   instagram: 'https://instagram.com/',
+    // },
+    // {
+    //   name: 'Harsh Bhamare',
+    //   role: 'President',
+    //   image: '/images/person.png',
+    //   linkedin: 'https://linkedin.com/',
+    //   instagram: 'https://instagram.com/',
+    // },
   ];
 
   return (
-    <section className="py-16 px-4 bg-gray-100">
+    <section className="py-16 px-4 bg-gray-1000">
       <style jsx>{`
         .social-box {
-          width: 40px;
+          width: 200px;
           height: 40px;
-          background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 152, 0, 0.1));
+          background: linear-gradient(135deg, rgba(78, 60, 9, 0.1), rgba(255, 152, 0, 0.1));
           border: 1px solid rgba(255, 193, 7, 0.3);
-          border-radius: 8px;
+          
+          border-radius: 30px;
           display: flex;
           align-items: center;
           justify-content: center;
           transition: all 0.3s ease;
           backdrop-filter: blur(10px);
+          row justify-content-center
+          margin: 20px;
         }
 
         .social-link:hover .social-box {
@@ -66,6 +69,7 @@ export default function Team() {
         .social-link:hover .social-svg {
           color: #ffffff;
         }
+          
       `}</style>
 
       <div className="max-w-7xl mx-auto">
@@ -74,8 +78,7 @@ export default function Team() {
           Meet the passionate individuals driving IGNITE forward.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {teamMembers.map((member, index) => (
+<div className="flex flex-wrap justify-center gap-6 mb-8">          {teamMembers.map((member, index) => (
             <div
               key={index}
               className="bg-gray-700 rounded-3xl p-8 flex flex-col items-center"
