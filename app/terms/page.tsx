@@ -119,7 +119,7 @@ export default function TermsAndConditions() {
               7. Contact Information
             </h2>
             <p className="text-gray-300 leading-relaxed" style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 300 }}>
-              For questions about these Terms and Conditions, please contact us at Ignite.com or call 1234567890.
+              For questions about these Terms and Conditions, please contact us at ignitestudentassociation@gmail.com or call +91 7387883221.
             </p>
           </section>
         </div>

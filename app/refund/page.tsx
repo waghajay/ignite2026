@@ -114,7 +114,7 @@ export default function RefundPolicy() {
               7. Contact Information
             </h2>
             <p className="text-gray-300 leading-relaxed" style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 300 }}>
-              For any inquiries regarding this policy or to discuss exceptional circumstances, please contact us at Ignite.com or call 1234567890. Our team will respond within 2-3 business days.
+              For any inquiries regarding this policy or to discuss exceptional circumstances, please contact us at ignitestudentassociation@gmail.com or call +91 7387883221. Our team will respond within 2-3 business days.
             </p>
           </section>
         </div>

@@ -142,11 +142,15 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 12px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
 .register-btn:hover {
   transform: scale(1.02);
   box-shadow: 0 8px 20px rgba(243, 189, 81, 0.4);
+  color: black;
 }
 
 /* More Details Button */
@@ -186,31 +190,107 @@
 
 /* Responsive Design */
 @media (max-width: 1200px) {
+  .event-section {
+    padding: 60px 40px;
+  }
+  
   .event-cards-container {
     grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  .event-title {
+    font-size: 40px;
   }
 }
 
 @media (max-width: 768px) {
   .event-section {
-    padding: 60px 40px;
+    padding: 40px 20px;
   }
 
   .event-title {
     font-size: 32px;
+    text-align: center;
   }
 
   .event-description {
     font-size: 14px;
+    text-align: center;
   }
 
   .event-cards-container {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
 
   .event-image-wrapper {
     height: 200px;
+  }
+  
+  .event-content {
+    padding: 20px;
+  }
+  
+  .event-card-title {
+    font-size: 20px;
+  }
+  
+  .register-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+  
+  .more-details-btn {
+    font-size: 12px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-section {
+    padding: 30px 15px;
+  }
+  
+  .event-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .event-description {
+    font-size: 13px;
+    margin-bottom: 40px;
+  }
+  
+  .event-cards-container {
+    gap: 16px;
+  }
+  
+  .event-content {
+    padding: 16px;
+  }
+  
+  .event-card-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .event-card-description {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  
+  .event-details {
+    margin-bottom: 16px;
+  }
+  
+  .event-detail-item {
+    font-size: 12px;
+  }
+  
+  .detail-icon {
+    width: 14px;
+    height: 14px;
   }
 }
 

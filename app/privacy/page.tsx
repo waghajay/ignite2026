@@ -146,7 +146,7 @@ export default function PrivacyPolicy() {
               8. Contact Us
             </h2>
             <p className="text-gray-300 leading-relaxed" style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 300 }}>
-              If you have questions about this Privacy Policy or wish to exercise your rights, please contact us at Ignite.com or call 1234567890.
+              If you have questions about this Privacy Policy or wish to exercise your rights, please contact us at ignitestudentassociation@gmail.com or call +91 7387883221.
             </p>
           </section>
         </div>

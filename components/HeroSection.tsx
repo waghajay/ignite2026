@@ -30,7 +30,7 @@ export default function HeroSection() {
       {/* Navigation */}
       <Header />
 
-      {/* Hero Content */}
+     {/* Hero Content */}
       <div className="hero-content">
         {/* Team IGNITE Presents */}
         <div className={`hero-subtitle ${isLoaded ? 'animate' : ''}`}>
@@ -75,15 +75,15 @@ export default function HeroSection() {
 
         {/* Buttons */}
         <div className={`button-container ${isLoaded ? 'animate' : ''}`}>
-          <button className="btn btn-primary">
+          <a href="/events" className="btn btn-primary">
             <span className="btn-text">Explore Events</span>
             <div className="btn-shine"></div>
-          </button>
+          </a>
           
-          <button className="btn btn-secondary">
+          <a href="/about" className="btn btn-secondary">
             <span className="btn-text">Know More</span>
             <div className="btn-fill"></div>
-          </button>
+          </a>
         </div>
 
         {/* Scroll Down Arrow */}
@@ -105,7 +105,7 @@ export default function HeroSection() {
       {/* Social Media Icons */}
       <div className="social-icons">
         <a
-          href="https://wa.me/"
+          href="https://wa.me/917387883221"
           target="_blank"
           rel="noopener noreferrer"
           className="social-link"
@@ -118,7 +118,7 @@ export default function HeroSection() {
         </a>
 
         <a
-          href="https://linkedin.com/"
+          href="https://www.linkedin.com/posts/ignite-student-associaion_ignitesa-studentleadership-mitaurangabad-activity-7435397203755511808-kpZF?utm_source=share&utm_medium=member_android&rcm=ACoAAEcLhvwByJ8nJF8JtODbsASx10bEPbCKEmo"
           target="_blank"
           rel="noopener noreferrer"
           className="social-link"
@@ -131,7 +131,7 @@ export default function HeroSection() {
         </a>
 
         <a
-          href="https://instagram.com/"
+          href="https://www.instagram.com/we_ignites?igsh=MTV4NWI4MGpjZWFjYw=="
           target="_blank"
           rel="noopener noreferrer"
           className="social-link"
