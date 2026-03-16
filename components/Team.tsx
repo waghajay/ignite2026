@@ -8,29 +8,29 @@ export default function Team() {
       name: 'Harsh Bhamare',
       role: 'President',
       image: '/images/person.png',
-      linkedin: 'https://linkedin.com/',
-      instagram: 'https://instagram.com/',
+      linkedin: 'https://www.linkedin.com/posts/ignite-student-associaion_ignitesa-studentleadership-mitaurangabad-activity-7435397203755511808-kpZF?utm_source=share&utm_medium=member_android&rcm=ACoAAEcLhvwByJ8nJF8JtODbsASx10bEPbCKEmo',
+      instagram: 'https://www.instagram.com/we_ignites?igsh=MTV4NWI4MGpjZWFjYw==',
     },
     {
-      name: 'Harsh Bhamare',
-      role: 'President',
+      name: 'Rasika Mahulkar',
+      role: 'Vice-President',
       image: '/images/person.png',
-      linkedin: 'https://linkedin.com/',
-      instagram: 'https://instagram.com/',
+      linkedin: 'https://www.linkedin.com/posts/ignite-student-associaion_ignitesa-studentleadership-mitaurangabad-activity-7435397203755511808-kpZF?utm_source=share&utm_medium=member_android&rcm=ACoAAEcLhvwByJ8nJF8JtODbsASx10bEPbCKEmo',
+      instagram: 'https://www.instagram.com/we_ignites?igsh=MTV4NWI4MGpjZWFjYw==',
     },
     {
-      name: 'Harsh Bhamare',
-      role: 'President',
+      name: 'Team Member',
+      role: 'Secretary',
       image: '/images/person.png',
-      linkedin: 'https://linkedin.com/',
-      instagram: 'https://instagram.com/',
+      linkedin: 'https://www.linkedin.com/posts/ignite-student-associaion_ignitesa-studentleadership-mitaurangabad-activity-7435397203755511808-kpZF?utm_source=share&utm_medium=member_android&rcm=ACoAAEcLhvwByJ8nJF8JtODbsASx10bEPbCKEmo',
+      instagram: 'https://www.instagram.com/we_ignites?igsh=MTV4NWI4MGpjZWFjYw==',
     },
     {
-      name: 'Harsh Bhamare',
-      role: 'President',
+      name: 'Team Member',
+      role: 'Treasurer',
       image: '/images/person.png',
-      linkedin: 'https://linkedin.com/',
-      instagram: 'https://instagram.com/',
+      linkedin: 'https://www.linkedin.com/posts/ignite-student-associaion_ignitesa-studentleadership-mitaurangabad-activity-7435397203755511808-kpZF?utm_source=share&utm_medium=member_android&rcm=ACoAAEcLhvwByJ8nJF8JtODbsASx10bEPbCKEmo',
+      instagram: 'https://www.instagram.com/we_ignites?igsh=MTV4NWI4MGpjZWFjYw==',
     },
   ];
 
@@ -127,9 +127,9 @@ export default function Team() {
         </div>
 
         <div className="text-center">
-          <button className="border-2 border-yellow-500 text-yellow-500 px-8 py-3 rounded-lg hover:bg-yellow-500 hover:text-white transition-colors" style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700 }}>
+          <a href="/team" className="border-2 border-yellow-500 text-yellow-500 px-8 py-3 rounded-lg hover:bg-yellow-500 hover:text-white transition-colors inline-block" style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700 }}>
             View Full Team
-          </button>
+          </a>
         </div>
       </div>
     </section>

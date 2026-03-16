@@ -1,6 +1,29 @@
 'use client'
 
+import { useState } from 'react'
+
 export default function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Here you can add form submission logic
+    console.log('Form submitted:', formData)
+    alert('Thank you for your message! We will get back to you soon.')
+    setFormData({ name: '', email: '', message: '' })
+  }
   return (
     <section className="py-16 px-4 bg-gray-900">
       <style jsx>{`
@@ -66,7 +89,7 @@ export default function ContactSection() {
                   className="text-gray-400" 
                   style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 400 }}
                 >
-                  ignite@gmail.com
+                  ignitestudentassociation@gmail.com
                 </p>
               </div>
             </div>
@@ -89,7 +112,7 @@ export default function ContactSection() {
                   className="text-gray-400" 
                   style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 400 }}
                 >
-                  +91 1234567890
+                  +91 7387883221
                 </p>
               </div>
             </div>
@@ -122,7 +145,7 @@ export default function ContactSection() {
             {/* Social Media Icons */}
             <div className="flex gap-6 pt-8">
               <a
-                href="https://wa.me/"
+                href="https://wa.me/917387883221"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-14 h-14 rounded-lg border-2 border-yellow-500 flex items-center justify-center hover:bg-yellow-500 transition-colors"
@@ -133,7 +156,7 @@ export default function ContactSection() {
               </a>
 
               <a
-                href="https://linkedin.com/"
+                href="https://www.linkedin.com/posts/ignite-student-associaion_ignitesa-studentleadership-mitaurangabad-activity-7435397203755511808-kpZF?utm_source=share&utm_medium=member_android&rcm=ACoAAEcLhvwByJ8nJF8JtODbsASx10bEPbCKEmo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-14 h-14 rounded-lg border-2 border-yellow-500 flex items-center justify-center hover:bg-yellow-500 transition-colors"
@@ -144,7 +167,7 @@ export default function ContactSection() {
               </a>
 
               <a
-                href="https://instagram.com/"
+                href="https://www.instagram.com/we_ignites?igsh=MTV4NWI4MGpjZWFjYw=="
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-14 h-14 rounded-lg border-2 border-yellow-500 flex items-center justify-center hover:bg-yellow-500 transition-colors"
@@ -157,31 +180,44 @@ export default function ContactSection() {
           </div>
 
           {/* Right Side - Contact Form */}
-          <div className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <input
               type="text"
+              name="name"
               placeholder="Your Name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
               className="contact-input"
               style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 400 }}
             />
             <input
               type="email"
+              name="email"
               placeholder="Your Email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
               className="contact-input"
               style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 400 }}
             />
             <textarea
+              name="message"
               placeholder="Your Message"
+              value={formData.message}
+              onChange={handleInputChange}
+              required
               className="contact-input"
               style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 400 }}
             ></textarea>
             <button 
+              type="submit"
               className="bg-yellow-500 text-black px-8 py-4 rounded-lg hover:bg-yellow-600 transition-colors w-full"
               style={{ fontFamily: 'Oswald, sans-serif', fontWeight: 700 }}
             >
               Submit Message
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </section>
