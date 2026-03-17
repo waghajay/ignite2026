@@ -54,6 +54,7 @@ export default function RegistrationForm() {
   const [registrationSuccess, setRegistrationSuccess] = useState(false)
   const [registrationData, setRegistrationData] = useState<RegistrationData | null>(null)
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({})
   
   const [formData, setFormData] = useState({
     event: eventId || '',
@@ -79,6 +80,16 @@ export default function RegistrationForm() {
     }
   }, [eventId])
 
+  // Set initial team size based on minTeamSize from event
+  useEffect(() => {
+    if (event?.minTeamSize) {
+      setFormData(prev => ({
+        ...prev,
+        team_size: event.minTeamSize || 1
+      }))
+    }
+  }, [event])
+
   const fetchEventDetails = async () => {
     try {
       setLoading(true)
@@ -103,10 +114,55 @@ export default function RegistrationForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    
+    // Special handling for team_size
+    if (name === 'team_size') {
+      const numValue = value === '' ? 1 : Number(value)
+      const minSize = event?.minTeamSize || 1
+      const maxSize = event?.maxTeamSize || 10
+      
+      // Clamp the value between min and max
+      if (!isNaN(numValue)) {
+        const clampedValue = Math.min(Math.max(numValue, minSize), maxSize)
+        setFormData(prev => ({
+          ...prev,
+          [name]: clampedValue
+        }))
+      }
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }))
+    }
+    
+    // Clear field error when user starts typing
+    if (fieldErrors[name]) {
+      setFieldErrors(prev => {
+        const newErrors = { ...prev }
+        delete newErrors[name]
+        return newErrors
+      })
+    }
+  }
+
+  const handleTeamSizeBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const value = Number(e.target.value)
+    const minSize = event?.minTeamSize || 1
+    const maxSize = event?.maxTeamSize || 10
+    
+    // Ensure value is within bounds on blur
+    if (isNaN(value) || value < minSize) {
+      setFormData(prev => ({
+        ...prev,
+        team_size: minSize
+      }))
+    } else if (value > maxSize) {
+      setFormData(prev => ({
+        ...prev,
+        team_size: maxSize
+      }))
+    }
   }
 
   const handleParticipantChange = (index: number, field: keyof Participant, value: string) => {
@@ -119,21 +175,41 @@ export default function RegistrationForm() {
       ...prev,
       participants: updatedParticipants
     }))
+    
+    // Clear participant field error
+    const errorKey = `participant_${index}_${field}`
+    if (fieldErrors[errorKey]) {
+      setFieldErrors(prev => {
+        const newErrors = { ...prev }
+        delete newErrors[errorKey]
+        return newErrors
+      })
+    }
   }
 
   const addParticipant = () => {
-    setFormData(prev => ({
-      ...prev,
-      participants: [...prev.participants, { name: '', email: '', phone: '' }]
-    }))
+    const maxTeamSize = event?.maxTeamSize || 10
+    const currentTotalMembers = formData.participants.length + 1 // +1 for leader
+    
+    if (currentTotalMembers < maxTeamSize) {
+      setFormData(prev => ({
+        ...prev,
+        participants: [...prev.participants, { name: '', email: '', phone: '' }]
+      }))
+    }
   }
 
   const removeParticipant = (index: number) => {
-    const updatedParticipants = formData.participants.filter((_, i) => i !== index)
-    setFormData(prev => ({
-      ...prev,
-      participants: updatedParticipants
-    }))
+    const minTeamSize = event?.minTeamSize || 1
+    const newTotalMembers = formData.participants.length // removing one, leader is separate
+    
+    if (newTotalMembers >= minTeamSize - 1) {
+      const updatedParticipants = formData.participants.filter((_, i) => i !== index)
+      setFormData(prev => ({
+        ...prev,
+        participants: updatedParticipants
+      }))
+    }
   }
 
   // Update participants array when team size changes
@@ -160,18 +236,68 @@ export default function RegistrationForm() {
   }, [formData.team_size])
 
   const validateForm = () => {
-    if (!formData.leader_name || !formData.leader_email || !formData.leader_phone) {
-      throw new Error('Leader details are required')
+    const errors: Record<string, string> = {}
+    
+    // Validate leader details
+    if (!formData.leader_name.trim()) {
+      errors.leader_name = 'Leader name is required'
+    }
+    
+    if (!formData.leader_email.trim()) {
+      errors.leader_email = 'Leader email is required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.leader_email)) {
+      errors.leader_email = 'Please enter a valid email address'
+    }
+    
+    if (!formData.leader_phone.trim()) {
+      errors.leader_phone = 'Leader phone is required'
+    } else if (!/^[0-9]{10}$/.test(formData.leader_phone.replace(/\D/g, ''))) {
+      errors.leader_phone = 'Please enter a valid 10-digit phone number'
+    }
+    
+    if (!formData.college_university.trim()) {
+      errors.college_university = 'College/University is required'
     }
 
     const teamSize = Number(formData.team_size) || 1
+    
+    // Validate against min and max team size from event
+    if (event?.minTeamSize && teamSize < event.minTeamSize) {
+      errors.team_size = `Minimum team size for this event is ${event.minTeamSize}`
+    }
+    
+    if (event?.maxTeamSize && teamSize > event.maxTeamSize) {
+      errors.team_size = `Maximum team size for this event is ${event.maxTeamSize}`
+    }
+
+    // Validate team members
     if (teamSize > 1) {
-      const invalidParticipants = formData.participants.some(
-        p => !p.name || !p.email || !p.phone
-      )
-      if (invalidParticipants) {
-        throw new Error('All team member details are required')
+      // Check if we have exactly (teamSize - 1) participants
+      if (formData.participants.length !== teamSize - 1) {
+        errors.participants = `Please add ${teamSize - 1} team member(s)`
       }
+      
+      formData.participants.forEach((participant, index) => {
+        if (!participant.name.trim()) {
+          errors[`participant_${index}_name`] = `Member ${index + 2} name is required`
+        }
+        if (!participant.email.trim()) {
+          errors[`participant_${index}_email`] = `Member ${index + 2} email is required`
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(participant.email)) {
+          errors[`participant_${index}_email`] = `Member ${index + 2} email is invalid`
+        }
+        if (!participant.phone.trim()) {
+          errors[`participant_${index}_phone`] = `Member ${index + 2} phone is required`
+        } else if (!/^[0-9]{10}$/.test(participant.phone.replace(/\D/g, ''))) {
+          errors[`participant_${index}_phone`] = `Member ${index + 2} phone is invalid`
+        }
+      })
+    }
+
+    setFieldErrors(errors)
+    
+    if (Object.keys(errors).length > 0) {
+      throw new Error('Please fix the validation errors')
     }
   }
 
@@ -225,13 +351,22 @@ export default function RegistrationForm() {
       validateForm()
 
       const teamSize = Number(formData.team_size) || 1
-      const participants = teamSize > 1 ? formData.participants : []
+      
+      // Include leader in participants array
+      const allParticipants = [
+        {
+          name: formData.leader_name,
+          email: formData.leader_email,
+          phone: formData.leader_phone
+        },
+        ...formData.participants
+      ]
 
       const registrationData = {
         event: eventId,
         team_name: formData.team_name || undefined,
         team_size: teamSize,
-        participants: participants,
+        participants: allParticipants,
         college_university: formData.college_university,
         leader_name: formData.leader_name,
         leader_email: formData.leader_email,
@@ -347,6 +482,11 @@ export default function RegistrationForm() {
 
   const teamSize = Number(formData.team_size) || 1
   const additionalMembersNeeded = teamSize - 1
+  const canAddMoreMembers = event?.maxTeamSize ? teamSize < event.maxTeamSize : teamSize < 10
+
+  // Determine min and max team size from event data
+  const minTeamSize = event?.minTeamSize || 1
+  const maxTeamSize = event?.maxTeamSize || 10
 
   return (
     <>
@@ -376,6 +516,19 @@ export default function RegistrationForm() {
             <div className="payment-notice">
               <p>Registration Fee: <strong>₹{event.amount}</strong></p>
               <p className="payment-note">You will be redirected to payment gateway after registration.</p>
+            </div>
+          )}
+
+          {/* Team Size Information */}
+          {event && (event.minTeamSize || event.maxTeamSize) && (
+            <div className="team-size-info">
+              <p>
+                {event.minTeamSize === event.maxTeamSize ? (
+                  <>This event requires exactly <strong>{event.minTeamSize} member{event.minTeamSize && event.minTeamSize > 1 ? 's' : ''}</strong> per team.</>
+                ) : (
+                  <>Team size must be between <strong>{event.minTeamSize || 1}</strong> and <strong>{event.maxTeamSize || 10}</strong> members.</>
+                )}
+              </p>
             </div>
           )}
 
@@ -414,13 +567,16 @@ export default function RegistrationForm() {
               <input
                 type="text"
                 name="leader_name"
-                className="form-input"
+                className={`form-input ${fieldErrors.leader_name ? 'error' : ''}`}
                 value={formData.leader_name}
                 onChange={handleChange}
                 required
                 disabled={submitting}
                 placeholder="Enter team leader's full name"
               />
+              {fieldErrors.leader_name && (
+                <span className="field-error">{fieldErrors.leader_name}</span>
+              )}
             </div>
 
             <div className="form-row">
@@ -432,13 +588,16 @@ export default function RegistrationForm() {
                   type="email"
                   id="leader_email"
                   name="leader_email"
-                  className="form-input"
+                  className={`form-input ${fieldErrors.leader_email ? 'error' : ''}`}
                   value={formData.leader_email}
                   onChange={handleChange}
                   required
                   disabled={submitting}
                   placeholder="leader@example.com"
                 />
+                {fieldErrors.leader_email && (
+                  <span className="field-error">{fieldErrors.leader_email}</span>
+                )}
               </div>
 
               <div className="form-group">
@@ -449,13 +608,16 @@ export default function RegistrationForm() {
                   type="tel"
                   id="leader_phone"
                   name="leader_phone"
-                  className="form-input"
+                  className={`form-input ${fieldErrors.leader_phone ? 'error' : ''}`}
                   value={formData.leader_phone}
                   onChange={handleChange}
                   required
                   disabled={submitting}
                   placeholder="9876543210"
                 />
+                {fieldErrors.leader_phone && (
+                  <span className="field-error">{fieldErrors.leader_phone}</span>
+                )}
               </div>
             </div>
 
@@ -481,19 +643,52 @@ export default function RegistrationForm() {
               <label htmlFor="team_size" className="form-label">
                 Team Size<span className="required">*</span>
               </label>
-              <input
-                type="number"
-                id="team_size"
-                name="team_size"
-                className="form-input"
-                value={formData.team_size}
-                onChange={handleChange}
-                required
-                min="1"
-                max="10"
-                disabled={submitting}
-              />
-              <small className="field-hint">Includes team leader</small>
+              <div className="team-size-input-wrapper">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const newValue = Math.max((event?.minTeamSize || 1), Number(formData.team_size) - 1)
+                    setFormData(prev => ({ ...prev, team_size: newValue }))
+                  }}
+                  className="team-size-btn"
+                  disabled={submitting || Number(formData.team_size) <= (event?.minTeamSize || 1)}
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  id="team_size"
+                  name="team_size"
+                  className={`form-input team-size-input ${fieldErrors.team_size ? 'error' : ''}`}
+                  value={formData.team_size}
+                  onChange={handleChange}
+                  onBlur={handleTeamSizeBlur}
+                  required
+                  min={minTeamSize}
+                  max={maxTeamSize}
+                  disabled={submitting}
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    const newValue = Math.min((event?.maxTeamSize || 10), Number(formData.team_size) + 1)
+                    setFormData(prev => ({ ...prev, team_size: newValue }))
+                  }}
+                  className="team-size-btn"
+                  disabled={submitting || Number(formData.team_size) >= (event?.maxTeamSize || 10)}
+                >
+                  +
+                </button>
+              </div>
+              {fieldErrors.team_size ? (
+                <span className="field-error">{fieldErrors.team_size}</span>
+              ) : (
+                <small className="field-hint">
+                  Includes team leader {event?.minTeamSize && event?.maxTeamSize && 
+                    `(Min: ${event.minTeamSize}, Max: ${event.maxTeamSize})`
+                  }
+                </small>
+              )}
             </div>
 
             {/* College/University */}
@@ -505,13 +700,16 @@ export default function RegistrationForm() {
                 type="text"
                 id="college_university"
                 name="college_university"
-                className="form-input"
+                className={`form-input ${fieldErrors.college_university ? 'error' : ''}`}
                 value={formData.college_university}
                 onChange={handleChange}
                 required
                 disabled={submitting}
                 placeholder="Enter your college/university name"
               />
+              {fieldErrors.college_university && (
+                <span className="field-error">{fieldErrors.college_university}</span>
+              )}
             </div>
 
             {/* Additional Team Members Section */}
@@ -521,7 +719,7 @@ export default function RegistrationForm() {
                   <label className="form-label">
                     Additional Team Members ({additionalMembersNeeded} required)
                   </label>
-                  {formData.participants.length < additionalMembersNeeded && (
+                  {formData.participants.length < additionalMembersNeeded && canAddMoreMembers && (
                     <button 
                       type="button" 
                       onClick={addParticipant}
@@ -544,33 +742,51 @@ export default function RegistrationForm() {
                     >
                       ×
                     </button>
-                    <input
-                      type="text"
-                      placeholder={`Member ${index + 2} Name`}
-                      className="form-input"
-                      value={participant.name}
-                      onChange={(e) => handleParticipantChange(index, 'name', e.target.value)}
-                      required
-                      disabled={submitting}
-                    />
-                    <input
-                      type="email"
-                      placeholder={`Member ${index + 2} Email`}
-                      className="form-input"
-                      value={participant.email}
-                      onChange={(e) => handleParticipantChange(index, 'email', e.target.value)}
-                      required
-                      disabled={submitting}
-                    />
-                    <input
-                      type="tel"
-                      placeholder={`Member ${index + 2} Phone`}
-                      className="form-input"
-                      value={participant.phone}
-                      onChange={(e) => handleParticipantChange(index, 'phone', e.target.value)}
-                      required
-                      disabled={submitting}
-                    />
+                    
+                    <div className="participant-field">
+                      <input
+                        type="text"
+                        placeholder={`Member ${index + 2} Name`}
+                        className={`form-input ${fieldErrors[`participant_${index}_name`] ? 'error' : ''}`}
+                        value={participant.name}
+                        onChange={(e) => handleParticipantChange(index, 'name', e.target.value)}
+                        required
+                        disabled={submitting}
+                      />
+                      {fieldErrors[`participant_${index}_name`] && (
+                        <span className="field-error">{fieldErrors[`participant_${index}_name`]}</span>
+                      )}
+                    </div>
+                    
+                    <div className="participant-field">
+                      <input
+                        type="email"
+                        placeholder={`Member ${index + 2} Email`}
+                        className={`form-input ${fieldErrors[`participant_${index}_email`] ? 'error' : ''}`}
+                        value={participant.email}
+                        onChange={(e) => handleParticipantChange(index, 'email', e.target.value)}
+                        required
+                        disabled={submitting}
+                      />
+                      {fieldErrors[`participant_${index}_email`] && (
+                        <span className="field-error">{fieldErrors[`participant_${index}_email`]}</span>
+                      )}
+                    </div>
+                    
+                    <div className="participant-field">
+                      <input
+                        type="tel"
+                        placeholder={`Member ${index + 2} Phone`}
+                        className={`form-input ${fieldErrors[`participant_${index}_phone`] ? 'error' : ''}`}
+                        value={participant.phone}
+                        onChange={(e) => handleParticipantChange(index, 'phone', e.target.value)}
+                        required
+                        disabled={submitting}
+                      />
+                      {fieldErrors[`participant_${index}_phone`] && (
+                        <span className="field-error">{fieldErrors[`participant_${index}_phone`]}</span>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>

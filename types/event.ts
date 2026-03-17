@@ -22,4 +22,6 @@ export interface Event {
   eventCordinators: Coordinator[];
   createdAt: string;
   updatedAt: string;
+  minTeamSize?: number;  // Add this
+  maxTeamSize?: number;  // Add this
 }
